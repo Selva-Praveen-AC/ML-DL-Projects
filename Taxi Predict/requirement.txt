@@ -1,0 +1,14 @@
+# Core libraries
+numpy
+pandas
+scikit-learn
+
+# Visualization
+matplotlib
+seaborn
+
+# Jupyter support
+notebook
+
+#Framework
+Flask
