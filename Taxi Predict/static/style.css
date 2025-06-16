@@ -1,0 +1,114 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #83a4d4, #b6fbff);
+    color: #333;
+}
+
+/* Container Styles */
+.container {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.container-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.heading_font {
+    font-family: 'Pacifico', cursive;
+    color: #2c3e50;
+}
+
+.description p {
+    font-size: 1.2rem;
+    color: #444;
+}
+
+/* ML Container */
+.ml-container {
+    background-color: #ffffff;
+    max-width: 500px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Input */
+.form-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Button */
+.my-cta-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.my-cta-button:hover {
+    background-color: #0056b3;
+}
+
+/* Prediction Result */
+.prediction-text {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1e3c72;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .ml-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .container-heading {
+        font-size: 2rem;
+    }
+}
+
+.result-box {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px 25px;
+    background-color: #ffffffd0;
+    color: #1e3c72;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.result-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.3);
+}
