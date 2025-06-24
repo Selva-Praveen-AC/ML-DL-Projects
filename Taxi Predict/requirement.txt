@@ -12,3 +12,4 @@ notebook
 
 #Framework
 Flask
+flask_pymongo
