@@ -5,19 +5,29 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to right, #83a4d4, #b6fbff);
     color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Container Styles */
+/* Header Container */
 .container {
+    width: 100%;
+    max-width: 950px;
+    background-color: #db883b8c;
+    border-radius: 12px;
     text-align: center;
-    padding: 40px 20px;
+    padding: 10px;
+    margin-top: 30px;
+    box-shadow: 0 10px 20px 	rgba(0,0,0,0.2);
 }
 
 .container-heading {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: bold;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .heading_font {
@@ -28,27 +38,28 @@ body {
 .description p {
     font-size: 1.2rem;
     color: #444;
+    margin: 5px 0;
 }
 
-/* ML Container */
+/* ML Input Form */
 .ml-container {
-    background-color: #ffffff;
-    max-width: 500px;
-    margin: auto;
+    background-color: #fff;
+    max-width: 900px;
+    width: 100%;
+    margin: 30px auto;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Form Input */
 .form-input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    width: 850px;
+    padding: 12px 18px;
+    margin: 15px 0;
+    border: 2px solid #9c7c24;
+    border-radius: 6px;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease;
 }
 
 .form-input:focus {
@@ -56,10 +67,10 @@ body {
     outline: none;
 }
 
-/* Button */
+/* CTA Button */
 .my-cta-button {
-    width: 100%;
-    padding: 12px;
+    width: 100px;
+    padding: 14px;
     background-color: #007BFF;
     color: white;
     font-size: 1rem;
@@ -67,37 +78,29 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-top: 10px;
+  
 }
 
 .my-cta-button:hover {
     background-color: #0056b3;
+    transform: scale(1.02);
 }
 
-/* Prediction Result */
+/* Prediction Output */
 .prediction-text {
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: #1e3c72;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-    .ml-container {
-        padding: 20px;
-        margin: 20px;
-    }
-
-    .container-heading {
-        font-size: 2rem;
-    }
+    margin-top: 20px;
 }
 
 .result-box {
-    max-width: 500px;
+    max-width: 600px;
     margin: 30px auto;
-    padding: 20px 25px;
+    padding: 25px;
     background-color: #ffffffd0;
     color: #1e3c72;
     font-size: 1.4rem;
@@ -105,10 +108,30 @@ body {
     text-align: center;
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .result-box:hover {
     transform: scale(1.02);
     box-shadow: 0 12px 22px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container-heading {
+        font-size: 2.2rem;
+    }
+
+    .ml-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .form-input {
+        font-size: 0.95rem;
+    }
+
+    .result-box {
+        font-size: 1.2rem;
+    }
 }
