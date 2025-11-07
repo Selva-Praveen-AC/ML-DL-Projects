@@ -1,0 +1,22 @@
+# Core libraries
+numpy
+pandas
+
+#Machine learning Libraries
+scikit-learn
+tensorflow
+pickle
+nltk
+
+# Visualization
+matplotlib
+seaborn
+
+# Jupyter support
+notebook
+ipykernel
+
+#Framework
+Flask
+flask_pymongo
+streamlit
