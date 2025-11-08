@@ -1,37 +1,3 @@
-Skip to content
-Chat history
-
-You said:
-from flask import Flask,request,jsonify
-import pickle,pandas as pd
-from pymongo import MongoClient
-
-app = Flask(__name__)
-model = pickle.load(open('model.pkl','rb'))
-db = MongoClient("mongodb://localhost:27017/")["ml_api"]["api"]
-
-@app.route('/')
-def home():
-    return "Heart Disease Prediction API"
-
-@app.route('/predict',methods=['POST'])
-def predict():
-    input_data =request.get_json()
-    input_df = pd.DataFrame([input_data])
-    prediction = model.predict(input_df)[0]
-    result = "Heart Disease Present" if prediction==1 else "No Heart Disease"
-    db.insert_one({'input':input_data,
-        'prediction':int(prediction),
-                    'result':result})
-    return jsonify({'input':input_data,
-        'prediction':int(prediction),
-                    'result':result})
-
-if __name__ == '__main__':
-    app.run(debug=True) html page for this code
-ChatGPT said:
-Sure! You want a simple HTML page to interact with your Flask API. I’ll create a form that lets a user input the necessary features for heart disease prediction and submit them to your /predict endpoint using JavaScript (AJAX) so the page won’t reload. Here's a basic example:
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,55 +6,100 @@ Sure! You want a simple HTML page to interact with your Flask API. I’ll create
     <title>Heart Disease Prediction</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px; }
-        h1 { text-align: center; }
-        form { max-width: 500px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        input[type="number"], input[type="text"] { width: 100%; padding: 8px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
-        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        h1 { text-align: center; color: #333; }
+        form { 
+            max-width: 500px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+        }
+        input, select { 
+            width: 100%; 
+            padding: 8px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+            border: 1px solid #ccc; 
+        }
+        button { 
+            padding: 10px 15px; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            width: 100%;
+            font-size: 16px;
+        }
         button:hover { background-color: #45a049; }
-        .result { text-align: center; margin-top: 20px; font-size: 18px; font-weight: bold; }
+        .result { 
+            text-align: center; 
+            margin-top: 20px; 
+            font-size: 18px; 
+            font-weight: bold; 
+        }
     </style>
 </head>
 <body>
     <h1>Heart Disease Prediction</h1>
-    <form id="predictionForm">
-        <label>Age:</label>
-        <input type="number" name="age" required>
-        
-        <label>Sex (1=Male, 0=Female):</label>
-        <input type="number" name="sex" required>
 
-        <label>Chest Pain Type (0-3):</label>
-        <input type="number" name="cp" required>
+    <form id="predictionForm">
+
+        <label>Age:</label>
+        <input type="number" name="Age" required>
+
+        <label>Sex:</label>
+        <select name="Sex" required>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+
+        <label>Chest Pain Type:</label>
+        <select name="ChestPainType" required>
+            <option value="ATA">ATA</option>
+            <option value="NAP">NAP</option>
+            <option value="ASY">ASY</option>
+            <option value="TA">TA</option>
+        </select>
 
         <label>Resting Blood Pressure:</label>
-        <input type="number" name="trestbps" required>
+        <input type="number" name="RestingBP" required>
 
         <label>Cholesterol:</label>
-        <input type="number" name="chol" required>
+        <input type="number" name="Cholesterol" required>
 
-        <label>Fasting Blood Sugar (1=true, 0=false):</label>
-        <input type="number" name="fbs" required>
+        <label>Fasting Blood Sugar:</label>
+        <select name="FastingBS" required>
+            <option value="0">False (≤120 mg/dl)</option>
+            <option value="1">True (>120 mg/dl)</option>
+        </select>
 
-        <label>Resting ECG (0-2):</label>
-        <input type="number" name="restecg" required>
+        <label>Resting ECG:</label>
+        <select name="RestingECG" required>
+            <option value="Normal">Normal</option>
+            <option value="ST">ST</option>
+            <option value="LVH">LVH</option>
+        </select>
 
         <label>Max Heart Rate:</label>
-        <input type="number" name="thalach" required>
+        <input type="number" name="MaxHR" required>
 
-        <label>Exercise Induced Angina (1=yes, 0=no):</label>
-        <input type="number" name="exang" required>
+        <label>Exercise Induced Angina:</label>
+        <select name="ExerciseAngina" required>
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+        </select>
 
-        <label>Oldpeak:</label>
-        <input type="number" step="0.1" name="oldpeak" required>
+        <label>Oldpeak (ST Depression):</label>
+        <input type="number" step="0.1" name="Oldpeak" required>
 
-        <label>Slope (0-2):</label>
-        <input type="number" name="slope" required>
-
-        <label>CA (0-3):</label>
-        <input type="number" name="ca" required>
-
-        <label>Thal (1-3):</label>
-        <input type="number" name="thal" required>
+        <label>ST Slope:</label>
+        <select name="ST_Slope" required>
+            <option value="Up">Up</option>
+            <option value="Flat">Flat</option>
+            <option value="Down">Down</option>
+        </select>
 
         <button type="submit">Predict</button>
     </form>
@@ -101,9 +112,13 @@ Sure! You want a simple HTML page to interact with your Flask API. I’ll create
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+
             const formData = new FormData(form);
             const data = {};
-            formData.forEach((value, key) => { data[key] = Number(value); });
+            formData.forEach((value, key) => { 
+                // convert numeric strings to numbers where appropriate
+                data[key] = isNaN(value) ? value : Number(value);
+            });
 
             try {
                 const response = await fetch('/predict', {
@@ -120,4 +135,3 @@ Sure! You want a simple HTML page to interact with your Flask API. I’ll create
     </script>
 </body>
 </html>
-
