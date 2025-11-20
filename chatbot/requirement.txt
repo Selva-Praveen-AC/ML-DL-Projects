@@ -5,7 +5,6 @@ pandas
 #Machine learning Libraries
 scikit-learn
 tensorflow
-pickle
 nltk
 
 # Visualization
